@@ -130,9 +130,6 @@ public class NavigationActivity extends AppCompatActivity implements OnNavigatio
     @Override
     public void onNavigationReady(boolean isRunning) {
         fetchRoute(pointValues.remove(0), pointValues.remove(0));
-        //routeRequest(pointValues);
-        //mapMatching(pointValues);
-        //startNavigation(optimizedRoute);
     }
 
     @Override
@@ -176,7 +173,7 @@ public class NavigationActivity extends AppCompatActivity implements OnNavigatio
     public void onArrival() {
         if (!dropoffDialogShown && !pointValues.isEmpty()) {
             showDropOffDialog();
-            dropoffDialogShown = true; // Accounts for multiple arrival events*/
+            dropoffDialogShown = true; // Accounts for multiple arrival events
             waypoint++;
             countWaypoints-=2;
             Toast.makeText(this, waypoint.toString()+". hedefinize ulaştınız!", Toast.LENGTH_SHORT).show();
@@ -241,13 +238,12 @@ public class NavigationActivity extends AppCompatActivity implements OnNavigatio
 
     private NavigationViewOptions setupOptions(DirectionsRoute directionsRoute) {
         dropoffDialogShown = false;
-
         NavigationViewOptions.Builder options = NavigationViewOptions.builder();
         options.directionsRoute(directionsRoute)
                 .navigationListener(this)
                 .progressChangeListener(this)
                 .routeListener(this)
-                .shouldSimulateRoute(false); //Simülasyon
+                .shouldSimulateRoute(true); //Simulation
         return options.build();
     }
 

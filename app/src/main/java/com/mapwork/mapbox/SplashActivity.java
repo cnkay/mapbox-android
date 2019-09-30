@@ -59,6 +59,7 @@ public class SplashActivity extends AppCompatActivity {
         //Check tree
         checkTree();
     }
+
     private void checkTree() {
         if (checkGPS())
             if (checkNetwork())
@@ -70,18 +71,13 @@ public class SplashActivity extends AppCompatActivity {
         if (isNetworkAvailable(this)) {
             return true;
         } else {
-            showDialog("", "Herhangi bir ağa bağlı değilsiniz!", "Ağ Ayarları", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
-                    startActivity(intent);
+            showDialog("", "Herhangi bir ağa bağlı değilsiniz!", "Ağ Ayarları", (DialogInterface dialog, int which) -> {
+                Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+                startActivity(intent);
 
-                }
-            }, "Çıkış", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
+
+            }, "Çıkış", (DialogInterface dialog, int which) -> {
+                finish();
             }, false);
 
         }
@@ -155,27 +151,22 @@ public class SplashActivity extends AppCompatActivity {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(this, permName)) {
 
                         showDialog("", "MapWork uygulamasının sorunsuz çalışabilmesi için konum bilgisi gerekmektedir", "İzin ver",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                        checkPermissions();
-                                    }
-                                }, "Çıkış", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                        finish();
-                                    }
+                                (DialogInterface dialog, int which) -> {
+                                    dialog.dismiss();
+                                    checkPermissions();
+
+                                }, "Çıkış", (DialogInterface dialog, int which) -> {
+
+                                    dialog.dismiss();
+                                    finish();
+
                                 }, false);
                     }
                     // Permissions are denied (never ask again checked)
                     // shouldShowRequestPermissionRationale will return false
                     else {
                         showDialog("", "Konum izni alınamadı. Uygulama Bilgisi > İzinler yolu ile izinleri düzenleyebilirsiniz.", "Ayarlar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                                (DialogInterface dialog, int which) -> {
                                         dialog.dismiss();
                                         //App Settings Intent
                                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -183,13 +174,11 @@ public class SplashActivity extends AppCompatActivity {
                                         intent.setData(uri);
                                         startActivity(intent);
                                         finish();
-                                    }
-                                }, "Uygulamadan Çık", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+
+                                }, "Uygulamadan Çık", (DialogInterface dialog, int which) -> {
                                         dialog.dismiss();
                                         finish();
-                                    }
+
                                 }, false);
                         break;
                     }
@@ -210,12 +199,7 @@ public class SplashActivity extends AppCompatActivity {
         builder.setPositiveButton(positiveText, positiveOnClick);
         builder.setNegativeButton(negativeText, negativeOnClick);
         builder.setCancelable(isCancelable);
-        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                finish();
-            }
-        });
+        builder.setOnCancelListener((DialogInterface dialog) -> finish());
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
@@ -241,18 +225,11 @@ public class SplashActivity extends AppCompatActivity {
     private boolean checkGPS() {
 
         if (!isGPSAvailable()) {
-            showDialog("GPS", "Lütfen GPS hizmetini açınız", "Ayarlar", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+            showDialog("GPS", "Lütfen GPS hizmetini açınız", "Ayarlar", (DialogInterface dialog, int which) -> {
                     Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                     startActivity(intent);
-                }
-            }, "Çıkış", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            }, false);
+
+            }, "Çıkış", (DialogInterface dialog, int which) -> { finish(); }, false);
             return false;
         }
         return true;

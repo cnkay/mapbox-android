@@ -238,7 +238,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     mapboxMap.addOnMapLongClickListener(MapActivity.this);
                 }
         );
-        //Zoom preference for user experience
+        // Zoom preference for user experience
         // this.mapboxMap.setMinZoomPreference(15);
     }
 
@@ -301,7 +301,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
                 locationComponent.activateLocationComponent(locationComponentActivationOptions);
-                //locationComponent.activateLocationComponent(this,loadedMapStyle);
                 locationComponent.setLocationComponentEnabled(true);
                 locationComponent.setCameraMode(CameraMode.TRACKING);
                 locationComponent.setRenderMode(RenderMode.COMPASS);
@@ -320,13 +319,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         return originPoint;
     }
     //********************************************
-    //Optimization
 
-    // Optimization
-
-    // Optimization
-
-    // Optimization
+    // Optimization API
     private void addDestinationMarker(@NonNull Style style, LatLng point) {
         List<Feature> destinationMarkerList = new ArrayList<>();
         for (Point singlePoint : points) {

@@ -1,15 +1,10 @@
 <resources>
     <string name="app_name">MapWork</string>
-    <string name="access_token">sk.eyJ1IjoiY2Vua2F5IiwiYSI6ImNrMG5hdXZjbzFibngzbW16dnN5dWdqajAifQ.p2VTtaIHqRc8lHYcDFxItQ</string>
+    <string name="access_token"><!-- MAPBOX ACCESS TOKEN HERE --></string>
     <string name="start_navigation">NAVİGASYONU BAŞLAT</string>
-
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dropoff_dialog_negative_text">İptal</string>
     <string name="dropoff_dialog_positive_text">Devam Et</string>
     <string name="dropoff_dialog_text">Sonraki hedefe devam etmek ister misiniz?</string>
     <string name="re_center">Merkezle</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-
-    <string name="title_activity_splash">SplashActivity</string>
 </resources>
